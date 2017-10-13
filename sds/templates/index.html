@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Execute Task</title>
+  </head>
+  <body>
+    <h1>Task</h1>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <p style="color: green;">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <p>Address: <input type="text" name="address"></p>
+      <p>Content: <textarea name="content"></textarea></p>
+      <input type="submit" name="submit" value="Send">
+    </form>
+
+    <form method="POST">
+      <p>taskid: <input type="text" name="address"></p>
+      <p>Content: <textarea name="content"></textarea></p>
+      <input type="submit" name="submit" value="Execute">
+    </form>
+  </body>
+</html>
