@@ -2,9 +2,15 @@
 <html>
   <head>
     <title>Execute Task</title>
+    <style>
+        .progress {
+            width: 100%;
+            text-align: center;
+        }
+    </style>
   </head>
   <body>
-    <h1>Task</h1>
+    <h1>Execute task</h1>
     {% with messages = get_flashed_messages() %}
       {% if messages %}
         {% for message in messages %}
@@ -13,16 +19,17 @@
       {% endif %}
     {% endwith %}
 
-    <form method="POST">
-      <p>Address: <input type="text" name="address"></p>
-      <p>Content: <textarea name="content"></textarea></p>
-      <input type="submit" name="submit" value="Send">
-    </form>
+    <!--<form method="POST">-->
+      <!--<p>Address: <input type="text" name="address"></p>-->
+      <!--<p>Content: <textarea name="content"></textarea></p>-->
+      <!--<input type="submit" name="submit" value="Send">-->
+    <!--</form>-->
 
     <form method="POST">
       <p>taskid: <input type="text" name="address"></p>
       <p>Content: <textarea name="content"></textarea></p>
       <input type="submit" name="submit" value="Execute">
     </form>
+
   </body>
 </html>

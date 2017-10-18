@@ -11,7 +11,11 @@ celery worker -A sds -l info
 celery worker -A sds --loglevel=info
 celery worker -A sds --loglevel=info --concurrency=5 -指定最大并发数，默认为CPU核数
 celery worker -A sds --loglevel=info -P gevent -c 100
+celery worker -A sds.tasks.celery -l info
 ```
+# 接口
+1.调用lsds接口启动lscs开始计算：http://ip:7080/<taskid>
+
 
 # 备注
 ## Redis command
