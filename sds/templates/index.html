@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Commit Task</title>
+    <style>
+        .progress {
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+  </head>
+  <body>
+    <h1>分步提交计算任务</h1>
+    <hr>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <p style="color: red;">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+
+    <form method="POST">
+      <p>启动策略计算程序(LSCS), 任务编号: <input type="text" name="taskid1"></p>
+      <p>启动结果汇总程序(LSSS), 任务编号: <input type="text" name="taskid2"></p>
+      <input type="submit" name="submit" value="Execute">
+    </form>
+    <hr>
+
+  </body>
+</html>
