@@ -45,3 +45,5 @@ celery worker -A sds.tasks.celery -l INFO -c 100 - 开启了100个任务线程
 ```
 
 # Todo
+1. 添加日志
+2. 工程部署

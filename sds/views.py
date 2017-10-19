@@ -72,24 +72,22 @@ def startupApp(taskid):
         # 提交执行LSCS
         task1 = startup_lscs.delay(taskid)
         while task1.ready() != True:
-            time.sleep(1)
-        # 提交执行LSSS
-        task2 = startup_lsss.delay(taskid)
-        while task2.ready() != True:
-            time.sleep(1)
-        # 更新任务的运行状态，0表示未提交回测任务，1表示任务已成功，2表示运行中，3表示运行失败，4任务提交中
-        #DATABASE_URI = 'pymysql+mysql://model:modelK$j$d1KDG@192.168.13.44/model'
-        conn = pymysql.connect(host = '192.168.13.44', port=3306, user = 'model', passwd='modelK$j$d1KDG',db='model')
+            # 提交执行LSSS
+            task2 = startup_lsss.delay(taskid)
+            while task2.ready() != True:
+                # 更新任务的运行状态，0表示未提交回测任务，1表示任务已成功，2表示运行中，3表示运行失败，4任务提交中
+                #DATABASE_URI = 'pymysql+mysql://model:modelK$j$d1KDG@192.168.13.44/model'
+                conn = pymysql.connect(host = '192.168.13.44', port=3306, user = 'model', passwd='modelK$j$d1KDG',db='model')
 
-        dtime = datetime.datetime.now()
-        ans_time = time.mktime(dtime.timetuple())
-        try:
-            with conn.cursor() as cursor:
-                sql = "UPDATE Strategy_Task SET Status = %s, EndTime = %s WHERE TaskID = '%s'" % (1, ans_time, taskid)
-                cursor.execute(sql)
-                conn.commit()
-        finally:
-            conn.close()
+                dtime = datetime.datetime.now()
+                ans_time = time.mktime(dtime.timetuple())
+                try:
+                    with conn.cursor() as cursor:
+                        sql = "UPDATE Strategy_Task SET Status = %s, EndTime = %s WHERE TaskID = '%s'" % (1, ans_time, taskid)
+                        cursor.execute(sql)
+                        conn.commit()
+                finally:
+                    conn.close()
 
         response = {
             'code': 8200,
