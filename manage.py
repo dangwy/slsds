@@ -5,8 +5,8 @@
 #
 # from myapp import create_app
 #
-# app = create_app()
-# manager = Manager(app)
+# sds = create_app()
+# manager = Manager(sds)
 # install_celery_commands(manager)
 #
 # if __name__ == "__main__":
