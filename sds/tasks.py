@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-
+import time
 from celery.utils.log import get_task_logger
 
 from sds import app, celery
@@ -12,10 +12,11 @@ def startup_lscs(self,taskid):
     logger.info(('args: {0.args!r}, kwargs: {0.kwargs!r}').format(self.request))
     with app.app_context():
         #cmd = 'echo ' + taskid + ' ' + '>>' + 'd:\\result1.txt 2>&1'
-        cmd = '/home/airflow/dags/scripts/STRATEGY-ENGINE/STRATEGY-ENGINE-DEMO.sh' + taskid
+        #time.sleep(2)
+        cmd = '/home/airflow/dags/scripts/STRATEGY-ENGINE/STRATEGY-ENGINE-DEMO.sh ' + taskid
         n = os.system(cmd)
         if n != 0:
-            logger.error('Executing task id {0.id} error!')
+            logger.error('Executing task error!')
             return 'Failure'
 
         return 'Finished'
@@ -25,13 +26,14 @@ def startup_lsss(self, taskid):
     logger.info(('args: {0.args!r}, kwargs: {0.kwargs!r}').format(self.request))
     with app.app_context():
         #cmd = 'echo ' + taskid + ' ' + '>>' + 'd:\\result2.txt 2>&1'
-        cmd = '/home/topcj/lsss/run.sh' + taskid
+        #time.sleep(10)
+        cmd = '/home/topcj/lsss/run.sh ' + taskid
         n = os.system(cmd)
         if n != 0:
-            logger.error('Executing task id {0.id} error!')
+            logger.error('Executing task error!')
             return 'Failure'
 
-        return 'finished'
+        return 'Finished'
 
 # @celery.task
 # def send_email(msg):
